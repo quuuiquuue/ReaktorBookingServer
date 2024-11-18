@@ -1,0 +1,5 @@
+-------------Modelos-------------
+Recursos: NombreRecurso, Aula
+Aula: Nombre, Planta
+Reserva: Profesor, FechaReserva, NumeroAlumnos
+Profesor: Dni, Nombre, Apellidos, Correo
