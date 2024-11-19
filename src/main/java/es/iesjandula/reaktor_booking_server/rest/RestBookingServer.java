@@ -4,12 +4,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.iesjandula.reaktor_booking_server.models.Recurso;
 import es.iesjandula.reaktor_booking_server.models.TramoHorario;
 import es.iesjandula.reaktor_booking_server.models.TramoHorarioId;
 import es.iesjandula.reaktor_booking_server.repositories.AulaRepository;
@@ -56,5 +56,23 @@ public class RestBookingServer
         // Retornar el TramoHorario si se encuentra o un estado Not Found si no
         return ResponseEntity.ok().body(tramoHorarioId);
     }
+    
+ // Endpoint para cancelar un Recurso por su ID
+    @RequestMapping(method = RequestMethod.DELETE, value = "/recurso")
+    public ResponseEntity<?> cancelarRecurso(@RequestParam("id") Integer id) {
+
+        // Buscar el Recurso en la base de datos por su ID
+        Optional<Recurso> recurso = this.recursoRepository.findById(id);
+
+        // Si el Recurso existe, proceder con la eliminación
+        if (recurso.isPresent()) {
+            recursoRepository.deleteById(id);
+            return ResponseEntity.ok().body("Recurso cancelado exitosamente.");
+        } else {
+            // Si no se encuentra, retornar un estado 404 Not Found
+            return ResponseEntity.status(404).body("Recurso no encontrado.");
+        }
+    }
+
 	
 }
