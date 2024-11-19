@@ -8,5 +8,6 @@ public class Constants
 	
     public static final String CSV_TRAMOS = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "csv" + File.separator + "tramos.csv";
     public static final String CSV_RECURSOS = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "csv" + File.separator + "recursos.csv";
-    public static final String CSV_DIASEMANA= "src" + File.separator + "main" + File.separator + "resources" + File.separator + "csv" + File.separator + "dias_de_la_semana.csv";
+    public static final String CSV_DIASEMANA = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "csv" + File.separator + "dias_de_la_semana.csv";
+    public static final String CSV_AULA = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "csv" + File.separator + "aula.csv";
 }

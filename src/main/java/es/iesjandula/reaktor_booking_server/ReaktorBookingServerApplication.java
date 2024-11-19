@@ -11,6 +11,7 @@ import es.iesjandula.reaktor_booking_server.repositories.AulaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.DiasSemanaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.RecursoRepository;
 import es.iesjandula.reaktor_booking_server.repositories.TramoHorarioRepository;
+import es.iesjandula.reaktor_booking_server.services.interfaz.IParseAulaCsv;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseDiaSemanaCsv;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseRecursosCsv;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseTramoCsv;
@@ -39,6 +40,9 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 	IParseDiaSemanaCsv iParseDiaSemanaCsv;
 	
 	@Autowired
+	IParseAulaCsv iParseAulaCsv;
+	
+	@Autowired
 	AulaRepository iAulaRepository;
 
 	public static void main(String[] args)
@@ -48,7 +52,9 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 	
 	@Transactional(readOnly = false)
 	public void run(String... args) throws Exception
-	{	
+	{
+		this.iParseAulaCsv.parseoAulaCsv(Utiles.scannerAula());
+		
 		if (!(this.iRecursoRepository.count() > 0 && this.iTramoHorarioRepository.count() > 0
 				&& this.iDiasSemanaRepository.count() > 0))
 		{
