@@ -25,4 +25,11 @@ public class Recurso
 	
 	@Column
 	private String componentes_informaticos;
+
+	public Recurso(Aula aula, String componentes_informaticos)
+	{
+		super();
+		this.aula = aula;
+		this.componentes_informaticos = componentes_informaticos;
+	}
 }

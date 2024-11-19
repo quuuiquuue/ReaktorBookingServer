@@ -28,10 +28,10 @@ public class BookingServerException extends Exception
 	 * @param movieErrorId
 	 * @param message
 	 */
-	public BookingServerException(Integer movieErrorId, String message)
+	public BookingServerException(Integer bookingErrorId, String message)
 	{
 		super(message);
-		this.bookingErrorId = movieErrorId;
+		this.bookingErrorId = bookingErrorId;
 		this.message = message;
 	}
 
@@ -40,10 +40,10 @@ public class BookingServerException extends Exception
 	 * @param message
 	 * @param exception
 	 */
-	public BookingServerException(Integer movieErrorId, String message, Exception exception)
+	public BookingServerException(Integer bookingErrorId, String message, Exception exception)
 	{
 		super(message, exception);
-		this.bookingErrorId = movieErrorId;
+		this.bookingErrorId = bookingErrorId;
 		this.message = message;
 		this.exception = exception;
 	}

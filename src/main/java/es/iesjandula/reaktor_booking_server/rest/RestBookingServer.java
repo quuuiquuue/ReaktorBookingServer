@@ -3,7 +3,9 @@ package es.iesjandula.reaktor_booking_server.rest;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +45,26 @@ public class RestBookingServer
 	
 	@Autowired
 	private TramoHorarioRepository tramoHorarioRepository ;
+	
+	@RequestMapping(method = RequestMethod.GET, value ="/recursos")
+    public ResponseEntity<?> getRecusos(
+            @RequestBody(required = true) Recurso recurso)
+	{
+		try
+		{
+			if(!(this.recursoRepository.count() > 0))
+			{
+				throw new BookingServerException(0, "No se ha encontrado recursos");
+			}
+			return ResponseEntity.ok().body(this.recursoRepository.findAll());
+		}
+		catch (Exception exception)
+		{
+			String message = "Fallo en la lectura de la base de datos";
+			BookingServerException bookingServerException = new BookingServerException(1, message);
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(bookingServerException.getMapError());
+		}
+	}
 	
 	// Endpoint para obtener un TramoHorario por su ID
     @RequestMapping(method = RequestMethod.GET, value ="/tramo_horario")

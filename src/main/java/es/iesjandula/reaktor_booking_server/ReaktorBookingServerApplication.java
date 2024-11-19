@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.Transactional;
 
+import es.iesjandula.reaktor_booking_server.repositories.AulaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.DiasSemanaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.RecursoRepository;
 import es.iesjandula.reaktor_booking_server.repositories.TramoHorarioRepository;
@@ -36,6 +37,9 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 
 	@Autowired
 	IParseDiaSemanaCsv iParseDiaSemanaCsv;
+	
+	@Autowired
+	AulaRepository iAulaRepository;
 
 	public static void main(String[] args)
 	{
@@ -44,7 +48,7 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 	
 	@Transactional(readOnly = false)
 	public void run(String... args) throws Exception
-	{
+	{	
 		if (!(this.iRecursoRepository.count() > 0 && this.iTramoHorarioRepository.count() > 0
 				&& this.iDiasSemanaRepository.count() > 0))
 		{
