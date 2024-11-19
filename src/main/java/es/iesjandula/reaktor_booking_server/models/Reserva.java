@@ -1,8 +1,5 @@
 package es.iesjandula.reaktor_booking_server.models;
 
-import java.time.LocalDate;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -21,9 +18,5 @@ public class Reserva {
 	
 	@ManyToOne
 	private Profesor profesor ;
-	
-	@Column
-	private LocalDate fecha ;
-
 
 }
