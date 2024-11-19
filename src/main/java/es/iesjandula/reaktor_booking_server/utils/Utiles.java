@@ -10,6 +10,7 @@ public class Utiles
     public static final File FILE_RECURSOS = new File(Constants.CSV_RECURSOS);
     public static final File FILE_DIAS_SEMANA = new File(Constants.CSV_DIASEMANA);
     public static final File FILE_AULAS = new File(Constants.CSV_AULA);
+    public static final File FILE_PROFESORES = new File(Constants.CSV_PROFESORES);
     
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
     
@@ -31,6 +32,11 @@ public class Utiles
     public static Scanner scannerAula()
     {
         return createScanner(FILE_AULAS);
+    }
+    
+    public static Scanner scannerProfesores()
+    {
+        return createScanner(FILE_PROFESORES);
     }
     
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//

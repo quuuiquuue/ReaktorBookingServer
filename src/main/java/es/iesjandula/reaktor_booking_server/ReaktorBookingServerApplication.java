@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.iesjandula.reaktor_booking_server.repositories.AulaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.DiasSemanaRepository;
+import es.iesjandula.reaktor_booking_server.repositories.ProfesorRepository;
 import es.iesjandula.reaktor_booking_server.repositories.RecursoRepository;
 import es.iesjandula.reaktor_booking_server.repositories.TramoHorarioRepository;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseAulaCsv;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseDiaSemanaCsv;
+import es.iesjandula.reaktor_booking_server.services.interfaz.IParseProfesorCsv;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseRecursosCsv;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseTramoCsv;
 import es.iesjandula.reaktor_booking_server.utils.Utiles;
@@ -44,6 +46,12 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 	
 	@Autowired
 	AulaRepository iAulaRepository;
+	
+	@Autowired
+	IParseProfesorCsv iParseProfesorCsv;
+	
+	@Autowired
+	ProfesorRepository iProfesorRepository;
 
 	public static void main(String[] args)
 	{
@@ -56,11 +64,12 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 		this.iParseAulaCsv.parseoAulaCsv(Utiles.scannerAula());
 		
 		if (!(this.iRecursoRepository.count() > 0 && this.iTramoHorarioRepository.count() > 0
-				&& this.iDiasSemanaRepository.count() > 0))
+				&& this.iDiasSemanaRepository.count() > 0 && this.iProfesorRepository.count() > 0))
 		{
 			this.iParseRecursosCsv.parseoRecursosCsv(Utiles.scannerRecursos());
 			this.iParseTramoCsv.parseoTramoCsv(Utiles.scannerTramos());
 			this.iParseDiaSemanaCsv.parseoDiaSemanaCsv(Utiles.scannerDiasSemana());
+			this.iParseProfesorCsv.parseoProfesorCsv(Utiles.scannerProfesores());
 		}
 	}
 }
