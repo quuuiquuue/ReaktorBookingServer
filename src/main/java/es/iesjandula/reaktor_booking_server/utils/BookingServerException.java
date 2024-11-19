@@ -18,7 +18,7 @@ public class BookingServerException extends Exception
 	 */
 	private static final long serialVersionUID = -6626056670072611679L;
 
-	private Integer movieErrorId;
+	private Integer bookingErrorId;
 	
 	private String message;
 	
@@ -31,7 +31,7 @@ public class BookingServerException extends Exception
 	public BookingServerException(Integer movieErrorId, String message)
 	{
 		super(message);
-		this.movieErrorId = movieErrorId;
+		this.bookingErrorId = movieErrorId;
 		this.message = message;
 	}
 
@@ -43,7 +43,7 @@ public class BookingServerException extends Exception
 	public BookingServerException(Integer movieErrorId, String message, Exception exception)
 	{
 		super(message, exception);
-		this.movieErrorId = movieErrorId;
+		this.bookingErrorId = movieErrorId;
 		this.message = message;
 		this.exception = exception;
 	}
@@ -52,7 +52,7 @@ public class BookingServerException extends Exception
 	{
 		Map<String, String> mapError = new TreeMap<String, String>();
 		
-		mapError.put("id", "" + this.movieErrorId);
+		mapError.put("id", "" + this.bookingErrorId);
 		mapError.put("message", "" + this.message);
 		
 		if(this.exception != null)

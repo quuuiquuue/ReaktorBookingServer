@@ -5,8 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/bookings")
-public class RestBookingServer {
-	
-	
+public class RestBookingServer
+{
 	
 }
