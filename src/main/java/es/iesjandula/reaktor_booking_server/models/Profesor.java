@@ -16,22 +16,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "profesor")
 @Entity
-public class Profesor {
-	
+public class Profesor
+{
 	@Id
 	@Column(name = "dni")
-	private String dni ;
-	
+	private String dni;
+
 	@Column(name = "nombre")
-	private String nombre ;
-	
+	private String nombre;
+
 	@Column(name = "apellidos")
-	private String apellidos ;
-	
+	private String apellidos;
+
 	@Column(name = "correo")
-	private String correo ;
-	
+	private String correo;
+
 	@OneToMany
-	private List<Reserva> reservas ;
+	private List<Reserva> reservas;
 
 }

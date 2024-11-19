@@ -6,12 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class Aula
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class TramoHorario
 {
 	@EmbeddedId
-	private AulaId aulaId;
+	private TramoHorarioId tramo_horario_id;
 }

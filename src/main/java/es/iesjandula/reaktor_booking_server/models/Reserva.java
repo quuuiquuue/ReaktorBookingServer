@@ -1,7 +1,11 @@
 package es.iesjandula.reaktor_booking_server.models;
 
-import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,12 +15,31 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reserva {
-	
-	@EmbeddedId
-	private ReservaId reservaId ;
-	
+public class Reserva
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@Column
+	private String correo_profesor;
+
 	@ManyToOne
-	private Profesor profesor ;
+	@JoinColumn(referencedColumnName = "id")
+	private Recurso recurso;
+
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "dia")
+	private DiasSemana dia_semana;
+
+	@ManyToOne
+	private TramoHorario tramo_horario;
+
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "dni")
+	private Profesor profesor;
+
+	@Column
+	private Integer numero_alumnos;
 
 }
