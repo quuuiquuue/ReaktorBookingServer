@@ -60,7 +60,7 @@ public class RestBookingServer
             // Verificar si el TramoHorario está presente
             if (tramoHorario.isPresent()) {
                 log.info("TramoHorario encontrado: {}", tramoHorario.get());
-                return ResponseEntity.ok().body(tramoHorario.get());
+                return ResponseEntity.ok().body(tramoHorario);
             } else {
                 // Si no se encuentra, lanzar una excepción personalizada
                 throw new BookingServerException(404, "TramoHorario con hora de inicio " + horaInicio + " y hora de fin " + horaFin + " no encontrado.");
