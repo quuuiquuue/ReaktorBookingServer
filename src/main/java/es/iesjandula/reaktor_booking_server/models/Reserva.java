@@ -26,7 +26,7 @@ public class Reserva
 	private String correo_profesor;
 
 	@ManyToOne
-	@JoinColumn(referencedColumnName = "id")
+	@JoinColumn(referencedColumnName = "nombre_recurso")
 	private Recurso recurso;
 
 	@ManyToOne
