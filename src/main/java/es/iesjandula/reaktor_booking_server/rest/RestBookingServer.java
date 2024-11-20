@@ -1,9 +1,6 @@
 package es.iesjandula.reaktor_booking_server.rest;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +15,6 @@ import es.iesjandula.reaktor_booking_server.models.Recurso;
 import es.iesjandula.reaktor_booking_server.models.Reserva;
 import es.iesjandula.reaktor_booking_server.models.TramoHorario;
 import es.iesjandula.reaktor_booking_server.models.TramoHorarioId;
-import es.iesjandula.reaktor_booking_server.repositories.AulaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.DiasSemanaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.ProfesorRepository;
 import es.iesjandula.reaktor_booking_server.repositories.RecursoRepository;
@@ -34,9 +30,6 @@ public class RestBookingServer
 {
 	@Autowired
 	private RecursoRepository recursoRepository ;
-	
-	@Autowired
-	private AulaRepository aulaRepository;
 	
 	@Autowired 
 	private DiasSemanaRepository diasSemanaRepository ;
@@ -145,9 +138,9 @@ public class RestBookingServer
 	public ResponseEntity<?> crearReserva(@RequestBody Reserva nuevaReserva) {
 	    try {
 	        // Validar que el recurso existe
-	        Optional<Recurso> recurso = recursoRepository.findById(nuevaReserva.getRecurso().getId());
+	        Optional<Recurso> recurso = recursoRepository.findById(nuevaReserva.getRecurso().getNombre_recurso());
 	        if (!recurso.isPresent()) {
-	            throw new BookingServerException(404, "Recurso con ID " + nuevaReserva.getRecurso().getId() + " no encontrado.");
+	            throw new BookingServerException(404, "Recurso con ID " + nuevaReserva.getRecurso().getNombre_recurso() + " no encontrado.");
 	        }
 
 	        // Validar si ya existe una reserva en ese día y tramo horario
@@ -173,20 +166,20 @@ public class RestBookingServer
     
  // Endpoint para cancelar un Recurso por su ID
  	@RequestMapping(method = RequestMethod.DELETE, value = "/recurso")
- 	public ResponseEntity<?> cancelarRecurso(@RequestParam("id") Integer id) {
+ 	public ResponseEntity<?> cancelarRecurso(@RequestParam("id") String nombre_recurso) {
 
  	    try {
  	        // Buscar el Recurso en la base de datos por su ID
- 	        Optional<Recurso> recurso = this.recursoRepository.findById(id);
+ 	        Optional<Recurso> recurso = this.recursoRepository.findById(nombre_recurso);
 
  	        // Si el Recurso existe, proceder con la eliminación
  	        if (recurso.isPresent()) {
- 	            recursoRepository.deleteById(id);
-                log.info("Recurso con ID: {} cancelado exitosamente.", id);
+ 	            recursoRepository.deleteById(nombre_recurso);
+                log.info("Recurso con ID: {} cancelado exitosamente.", nombre_recurso);
  	            return ResponseEntity.ok().body("Recurso cancelado exitosamente.");
  	        } else {
  	            // Si no se encuentra, lanzar una excepción personalizada
- 	            throw new BookingServerException(404, "Recurso con ID " + id + " no encontrado.");
+ 	            throw new BookingServerException(404, "Recurso con ID " + nombre_recurso + " no encontrado.");
  	        }
  	    } catch (BookingServerException ex) {
  	        // Manejo de la excepción personalizada y retorno de respuesta

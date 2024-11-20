@@ -7,8 +7,6 @@ import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.iesjandula.reaktor_booking_server.models.Aula;
-import es.iesjandula.reaktor_booking_server.models.AulaId;
 import es.iesjandula.reaktor_booking_server.models.Recurso;
 import es.iesjandula.reaktor_booking_server.repositories.RecursoRepository;
 import es.iesjandula.reaktor_booking_server.services.interfaz.IParseRecursosCsv;
@@ -36,13 +34,8 @@ public class ParseRecursosCsv implements IParseRecursosCsv
 			String[] columna = line.split(",");
 			
 			Recurso recurso = new Recurso();
-			
-			AulaId aulaId = new AulaId(columna[0], columna[1]);
-			Aula aula = new Aula(aulaId);
-			
-			recurso.setAula(aula);
-			recurso.setComponentes_informaticos(columna[2]);
-			
+			recurso.setNombre_recurso(columna[0]);
+			recurso.setComponentes_informaticos(columna[1]);
 			
 			recursos.add(recurso);
 		}
