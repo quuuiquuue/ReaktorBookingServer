@@ -83,6 +83,26 @@ public class RestBookingServer
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value ="/reservas")
+    public ResponseEntity<?> getReservaByRecurso(@RequestBody(required = true) Recurso recurso)
+    {
+		try
+		{
+			if(this.reservaRepository.findByRecurso(recurso.getNombre_recurso()).isEmpty())
+			{
+				throw new BookingServerException(100, "EL recurso no se ha encontrado");
+			}
+			
+			return ResponseEntity.ok().body(this.reservaRepository.findByRecurso(recurso.getNombre_recurso()));
+		}
+		catch (Exception exception)
+		{
+			String message = "Fallo en la lectura de la base de datos";
+			BookingServerException bookingServerException = new BookingServerException(1, message);
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(bookingServerException.getMapError());
+		}
+    }
+	
 	// Endpoint para obtener un TramoHorario por su ID
     @RequestMapping(method = RequestMethod.GET, value ="/tramo_horario")
     public ResponseEntity<?> getTramoHorario(
