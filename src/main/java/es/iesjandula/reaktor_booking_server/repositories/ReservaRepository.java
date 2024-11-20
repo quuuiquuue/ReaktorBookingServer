@@ -12,7 +12,7 @@ import es.iesjandula.reaktor_booking_server.models.Recurso;
 import es.iesjandula.reaktor_booking_server.models.Reserva;
 import es.iesjandula.reaktor_booking_server.models.TramoHorario;
 
-public interface ReservaRepository extends JpaRepository<Reserva, Integer>{
+public interface ReservaRepository extends JpaRepository<Reserva, String>{
 	
 
 	Optional<Reserva> findByRecursoAndDiaSemanaAndTramoHorario(Recurso recurso, DiasSemana diaSemana, TramoHorario tramoHorario);

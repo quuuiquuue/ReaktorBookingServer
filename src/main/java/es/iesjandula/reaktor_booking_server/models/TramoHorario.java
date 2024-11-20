@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 public class TramoHorario
 {
 	@EmbeddedId
-	private TramoHorarioId tramo_horario_id;
+	private TramoHorarioId tramoHorarioId;
 }
