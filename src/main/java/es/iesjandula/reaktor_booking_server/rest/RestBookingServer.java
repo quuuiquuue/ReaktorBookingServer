@@ -1,6 +1,5 @@
 package es.iesjandula.reaktor_booking_server.rest;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.iesjandula.reaktor_booking_server.models.Recurso;
 import es.iesjandula.reaktor_booking_server.models.Reserva;
+import es.iesjandula.reaktor_booking_server.models.TramoHorario;
+import es.iesjandula.reaktor_booking_server.models.TramoHorarioId;
 import es.iesjandula.reaktor_booking_server.repositories.DiasSemanaRepository;
 import es.iesjandula.reaktor_booking_server.repositories.ProfesorRepository;
 import es.iesjandula.reaktor_booking_server.repositories.RecursoRepository;
@@ -52,23 +53,16 @@ public class RestBookingServer
 				throw new BookingServerException(0, "No se ha encontrado recursos");
 			}
 			return ResponseEntity.ok().body(this.reservaRepository.findAll());
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			String message = "Fallo en la lectura de la base de datos";
 			BookingServerException bookingServerException = new BookingServerException(1, message);
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(bookingServerException.getMapError());
 		}
 	}
-<<<<<<< HEAD
 
 	@RequestMapping(method = RequestMethod.GET, value = "/recursos")
 	public ResponseEntity<?> getRecusos()
-=======
-	
-	@RequestMapping(method = RequestMethod.GET, value ="/recursos")
-    public ResponseEntity<?> getRecusos()
->>>>>>> 1395ab93cede9a5ae21626be8c2e993255544c31
 	{
 		try
 		{
@@ -77,8 +71,7 @@ public class RestBookingServer
 				throw new BookingServerException(0, "No se ha encontrado recursos");
 			}
 			return ResponseEntity.ok().body(this.recursoRepository.findAll());
-		}
-		catch (Exception ex)
+		} catch (Exception ex)
 		{
 			String message = "Fallo en la lectura de la base de datos";
 			BookingServerException bookingServerException = new BookingServerException(1, message);
@@ -97,8 +90,7 @@ public class RestBookingServer
 			}
 
 			return ResponseEntity.ok().body(this.reservaRepository.findByRecurso(recurso.getNombre_recurso()));
-		}
-		catch (Exception exception)
+		} catch (Exception exception)
 		{
 			String message = "Fallo en la lectura de la base de datos";
 			BookingServerException bookingServerException = new BookingServerException(1, message);
@@ -107,12 +99,10 @@ public class RestBookingServer
 	}
 
 	// Endpoint para obtener un TramoHorario por su ID
-<<<<<<< HEAD
 	@RequestMapping(method = RequestMethod.GET, value = "/tramo_horario")
 	public ResponseEntity<?> getTramoHorario(@RequestParam("horaInicio") String horaInicio,
 			@RequestParam("horaFin") String horaFin)
 	{
-
 		try
 		{
 			// Construir el ID embebido
@@ -126,15 +116,13 @@ public class RestBookingServer
 			{
 				log.info("TramoHorario encontrado: {}", tramoHorario.get());
 				return ResponseEntity.ok().body(tramoHorario);
-			}
-			else
+			} else
 			{
 				// Si no se encuentra, lanzar una excepción personalizada
 				throw new BookingServerException(404, "TramoHorario con hora de inicio " + horaInicio
 						+ " y hora de fin " + horaFin + " no encontrado.");
 			}
-		}
-		catch (BookingServerException ex)
+		} catch (BookingServerException ex)
 		{
 			// Manejo de la excepción personalizada y retorno de respuesta
 			log.error("Error al obtener TramoHorario: {}", ex.getMessage());
@@ -142,29 +130,27 @@ public class RestBookingServer
 		}
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/tramo_horario")
+	public ResponseEntity<?> getTramoHorario()
+	{
+
+		try
+		{
+			log.info("TramoHorario encontrado: {}", this.tramoHorarioRepository.findAll());
+			return ResponseEntity.ok().body(this.tramoHorarioRepository.findAll());
+
+		} catch (Exception ex)
+		{
+			// Manejo de la excepción personalizada y retorno de respuesta
+			log.error("Error al obtener TramoHorario: {}", ex.getMessage());
+			BookingServerException bookingServerException = new BookingServerException(500,
+					"Error al obtener TramoHorario");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(bookingServerException.getMapError());
+		}
+	}
+
 	@RequestMapping(method = RequestMethod.GET, value = "/dias_semana")
 	public ResponseEntity<?> getDiasSemana()
-=======
-    @RequestMapping(method = RequestMethod.GET, value ="/tramo_horario")
-    public ResponseEntity<?> getTramoHorario()
-    {
-
-        try
-        {
-                log.info("TramoHorario encontrado: {}", this.tramoHorarioRepository.findAll());
-                return ResponseEntity.ok().body(this.tramoHorarioRepository.findAll());
-                
-        } catch (Exception ex) {
-            // Manejo de la excepción personalizada y retorno de respuesta
-            log.error("Error al obtener TramoHorario: {}", ex.getMessage());
-            BookingServerException bookingServerException = new BookingServerException(500, "Error al obtener TramoHorario");
-            return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(bookingServerException.getMapError());
-        }
-    }
-    
-	@RequestMapping(method = RequestMethod.GET, value ="/dias_semana")
-    public ResponseEntity<?> getDiasSemana()
->>>>>>> 1395ab93cede9a5ae21626be8c2e993255544c31
 	{
 		try
 		{
@@ -175,8 +161,7 @@ public class RestBookingServer
 				throw new BookingServerException(0, "No se ha encontrado dias de la semanarecursos");
 			}
 			return ResponseEntity.ok().body(this.diasSemanaRepository.findAll());
-		}
-		catch (Exception exception)
+		} catch (Exception exception)
 		{
 
 			// Manejo de la excepción personalizada y retorno de respuesta
@@ -187,7 +172,6 @@ public class RestBookingServer
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/reserva")
-<<<<<<< HEAD
 	public ResponseEntity<?> crearReserva(@RequestBody Reserva nuevaReserva)
 	{
 		try
@@ -199,49 +183,26 @@ public class RestBookingServer
 				throw new BookingServerException(404,
 						"Recurso con ID " + nuevaReserva.getRecurso().getNombre_recurso() + " no encontrado.");
 			}
-=======
-	public ResponseEntity<?> crearReserva(@RequestBody Reserva nuevaReserva) {
-	    try
-	    {
-	        // Validar que el recurso existe
-	        Optional<Recurso> recurso = recursoRepository.findById(nuevaReserva.getRecurso().getNombre_recurso());
-	        if (!recurso.isPresent()) {
-	            throw new BookingServerException(404, "Recurso con ID " + nuevaReserva.getRecurso().getNombre_recurso() + " no encontrado.");
-	        }
->>>>>>> 1395ab93cede9a5ae21626be8c2e993255544c31
 
 			// Validar si ya existe una reserva en ese día y tramo horario
 			Optional<Reserva> reservaExistente = reservaRepository.findByRecursoAndDiaSemanaAndTramoHorario(
 					nuevaReserva.getRecurso(), nuevaReserva.getDiaSemana(), nuevaReserva.getTramoHorario());
 
-<<<<<<< HEAD
 			if (reservaExistente.isPresent())
 			{
 				throw new BookingServerException(409,
 						"Ya existe una reserva para este recurso en el día " + nuevaReserva.getDiaSemana()
 								+ " y tramo horario "
-								+ nuevaReserva.getTramoHorario().getTramo_horario_id().getHora_inicio() + "-"
-								+ nuevaReserva.getTramoHorario().getTramo_horario_id().getHora_fin());
+								+ nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraInicio() + "-"
+								+ nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraFin());
 			}
 
-			// Guardar la nueva reserva en la base de datos
-			reservaRepository.save(nuevaReserva);
+			this.reservaRepository.saveAndFlush(nuevaReserva);
+
 			log.info("Reserva creada con éxito: {}", nuevaReserva);
 			return ResponseEntity.ok().body("Reserva creada con éxito.");
-=======
-	        if (reservaExistente.isPresent()) {
-	            throw new BookingServerException(409, "Ya existe una reserva para este recurso en el día " + nuevaReserva.getDiaSemana() +
-	                    " y tramo horario " + nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraInicio() + "-" + nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraFin());
-	        }
-	        
-	        this.reservaRepository.saveAndFlush(nuevaReserva);
-	        
-	        log.info("Reserva creada con éxito: {}", nuevaReserva);
-	        return ResponseEntity.ok().body("Reserva creada con éxito.");
->>>>>>> 1395ab93cede9a5ae21626be8c2e993255544c31
 
-		}
-		catch (BookingServerException ex)
+		} catch (BookingServerException ex)
 		{
 			// Manejo de la excepción personalizada y retorno de la respuesta
 			log.error("Error al crear reserva: {}", ex.getMessage());
@@ -265,14 +226,12 @@ public class RestBookingServer
 				recursoRepository.deleteById(nombre_recurso);
 				log.info("Recurso con ID: {} cancelado exitosamente.", nombre_recurso);
 				return ResponseEntity.ok().body("Recurso cancelado exitosamente.");
-			}
-			else
+			} else
 			{
 				// Si no se encuentra, lanzar una excepción personalizada
 				throw new BookingServerException(404, "Recurso con ID " + nombre_recurso + " no encontrado.");
 			}
-		}
-		catch (BookingServerException ex)
+		} catch (BookingServerException ex)
 		{
 			// Manejo de la excepción personalizada y retorno de respuesta
 			log.error("Error al cancelar Recurso: {}", ex.getMessage());
