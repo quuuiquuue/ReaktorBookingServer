@@ -17,7 +17,7 @@ public class ParseDiaSemanaCsv implements IParseDiaSemanaCsv
 {
 	@Autowired
 	DiasSemanaRepository iDiasSemanaRepository;
-
+	
 	@Override
 	public void parseoDiaSemanaCsv(Scanner scanner) throws BookingServerException
 	{
@@ -32,12 +32,12 @@ public class ParseDiaSemanaCsv implements IParseDiaSemanaCsv
 		{
 			String line = scanner.nextLine();
 			String[] columna = line.split(",");
-
+			
 			DiasSemana dia = new DiasSemana(columna[0]);
-
+			
 			dias.add(dia);
 		}
-		this.iDiasSemanaRepository.saveAllAndFlush(dias);
+		this.iDiasSemanaRepository.saveAllAndFlush(dias);	
 	}
 
 }

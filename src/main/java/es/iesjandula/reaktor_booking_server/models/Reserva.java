@@ -29,7 +29,7 @@ public class Reserva
 	private Recurso recurso;
 
 	@ManyToOne
-	@JoinColumn(referencedColumnName = "dia")
+	@JoinColumn( referencedColumnName = "dia")
 	private DiasSemana diaSemana;
 
 	@ManyToOne

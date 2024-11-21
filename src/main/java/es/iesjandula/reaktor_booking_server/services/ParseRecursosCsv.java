@@ -17,7 +17,7 @@ public class ParseRecursosCsv implements IParseRecursosCsv
 {
 	@Autowired
 	RecursoRepository iRecursoRepository;
-
+	
 	@Override
 	public void parseoRecursosCsv(Scanner scanner) throws BookingServerException
 	{
@@ -32,11 +32,11 @@ public class ParseRecursosCsv implements IParseRecursosCsv
 		{
 			String line = scanner.nextLine();
 			String[] columna = line.split(",");
-
+			
 			Recurso recurso = new Recurso();
 			recurso.setNombre_recurso(columna[0]);
 			recurso.setComponentes_informaticos(columna[1]);
-
+			
 			recursos.add(recurso);
 		}
 		this.iRecursoRepository.saveAllAndFlush(recursos);
