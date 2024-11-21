@@ -20,7 +20,7 @@ public class Reserva
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	@Column
 	private String correo_profesor;
 

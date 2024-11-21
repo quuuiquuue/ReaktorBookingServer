@@ -20,8 +20,15 @@ public class TramoHorarioId implements Serializable
 	private static final long serialVersionUID = -86643101492426938L;
 
 	@Column
+<<<<<<< HEAD
 	private String hora_inicio;
 
 	@Column
 	private String hora_fin;
+=======
+    private String horaInicio;
+
+    @Column
+    private String horaFin;
+>>>>>>> 1395ab93cede9a5ae21626be8c2e993255544c31
 }
