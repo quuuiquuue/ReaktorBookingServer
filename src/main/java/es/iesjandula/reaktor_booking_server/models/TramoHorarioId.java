@@ -21,7 +21,7 @@ public class TramoHorarioId implements Serializable
 
 	@Column
 	private String hora_inicio;
-	
+
 	@Column
 	private String hora_fin;
 }

@@ -1,6 +1,5 @@
 package es.iesjandula.reaktor_booking_server.models;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +29,7 @@ public class Reserva
 	private Recurso recurso;
 
 	@ManyToOne
-	@JoinColumn( referencedColumnName = "dia")
+	@JoinColumn(referencedColumnName = "dia")
 	private DiasSemana diaSemana;
 
 	@ManyToOne

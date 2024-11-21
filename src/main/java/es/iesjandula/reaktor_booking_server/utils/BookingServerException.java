@@ -19,9 +19,9 @@ public class BookingServerException extends Exception
 	private static final long serialVersionUID = -6626056670072611679L;
 
 	private Integer bookingErrorId;
-	
+
 	private String message;
-	
+
 	private Exception exception;
 
 	/**
@@ -47,20 +47,20 @@ public class BookingServerException extends Exception
 		this.message = message;
 		this.exception = exception;
 	}
-	
+
 	public Map<String, String> getMapError()
 	{
 		Map<String, String> mapError = new TreeMap<String, String>();
-		
+
 		mapError.put("id", "" + this.bookingErrorId);
 		mapError.put("message", "" + this.message);
-		
-		if(this.exception != null)
+
+		if (this.exception != null)
 		{
 			String stacktrace = ExceptionUtils.getStackTrace(this.exception);
 			mapError.put("exception", stacktrace);
 		}
 		return mapError;
 	}
-	
+
 }

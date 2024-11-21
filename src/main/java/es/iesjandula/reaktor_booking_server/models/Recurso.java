@@ -15,7 +15,7 @@ public class Recurso
 {
 	@Id
 	private String nombre_recurso;
-	
+
 	@Column
 	private String componentes_informaticos;
 }

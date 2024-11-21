@@ -38,10 +38,10 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 
 	@Autowired
 	IParseDiaSemanaCsv iParseDiaSemanaCsv;
-	
+
 	@Autowired
 	IParseProfesorCsv iParseProfesorCsv;
-	
+
 	@Autowired
 	ProfesorRepository iProfesorRepository;
 
@@ -49,10 +49,10 @@ public class ReaktorBookingServerApplication implements CommandLineRunner
 	{
 		SpringApplication.run(ReaktorBookingServerApplication.class, args);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void run(String... args) throws Exception
-	{		
+	{
 		if (!(this.iRecursoRepository.count() > 0 && this.iTramoHorarioRepository.count() > 0
 				&& this.iDiasSemanaRepository.count() > 0 && this.iProfesorRepository.count() > 0))
 		{

@@ -33,13 +33,13 @@ public class ParseTramoCsv implements IParseTramoCsv
 		{
 			String line = scanner.nextLine();
 			String[] columna = line.split(",");
-			
+
 			TramoHorarioId tramoHorarioId = new TramoHorarioId(columna[0], columna[1]);
-			
+
 			TramoHorario tramoHorario = new TramoHorario(tramoHorarioId);
 			tramos.add(tramoHorario);
 		}
-		this.iTramoHorarioRepository.saveAllAndFlush(tramos);	
+		this.iTramoHorarioRepository.saveAllAndFlush(tramos);
 	}
 
 }
