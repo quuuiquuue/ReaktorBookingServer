@@ -1,0 +1,5 @@
+Flag recomendacion reserva Aulas Tic
+
+Nº Portatiles Totales en los Carritos
+
+Porcentaje con el numero total de los portatiles que se pueden asignar
