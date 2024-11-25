@@ -1,11 +1,8 @@
 package es.iesjandula.reaktor_booking_server.models;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,8 +27,5 @@ public class Profesor
 
 	@Column(name = "correo")
 	private String correo;
-
-	@OneToMany
-	private List<Reserva> reservas;
 
 }
