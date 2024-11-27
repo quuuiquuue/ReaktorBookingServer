@@ -20,5 +20,20 @@ public interface ReservaRepository extends JpaRepository<Reserva, String>{
 	@Query("SELECT r FROM Reserva r WHERE " +
 		       "(LOWER(r.recurso.nombre_recurso) LIKE LOWER(CONCAT('%', :recurso, '%')) OR :recurso IS NULL)")
 		List<Reserva> findByRecurso(@Param("recurso") String recurso);
+	
+	@Query("SELECT r.recurso.nombre_recurso " +
+		       "FROM Reserva r " +
+		       "WHERE r.recurso.componentes_informaticos = 'AulaTic' " +
+		       "AND r.id NOT IN (" +
+		       "  SELECT res.id " +
+		       "  FROM Reserva res " +
+		       "  WHERE res.diaSemana.dia = :dia " +
+		       "  AND res.tramoHorario.tramoHorarioId.horaInicio = :inicio " +
+		       "  AND res.tramoHorario.tramoHorarioId.horaFin = :fin" +
+		       ")")
+		List<String> sinReservasAulaTic(@Param("dia") String dia,
+		                                @Param("inicio") String inicio,
+		                                @Param("fin") String fin);
+
 
 }

@@ -1,4 +1,4 @@
-Flag recomendacion reserva Aulas Tic
+Flag recomendacion 2 intentos reserva Aulas Tic. Buscar por Dia de la semana y tramo horario en el where
 
 Nº Portatiles Totales en los Carritos
 

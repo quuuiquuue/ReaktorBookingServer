@@ -1,5 +1,6 @@
 package es.iesjandula.reaktor_booking_server.rest;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -145,6 +146,12 @@ public class RestBookingServer
 	public ResponseEntity<?> crearReserva(@RequestBody Reserva nuevaReserva) {
 	    try
 	    {
+	    	List<String> aulasTicSinReserva = this.reservaRepository.sinReservasAulaTic(nuevaReserva.getDiaSemana().getDia(), nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraInicio(), nuevaReserva.getTramoHorario().getTramoHorarioId().getHoraFin());
+	    	
+	    	String message = "Existen Aulas Tic sin reservas: " + aulasTicSinReserva;
+	    	
+	    	log.info(message);
+	    	
 	        // Validar que el recurso existe
 	        Optional<Recurso> recurso = recursoRepository.findById(nuevaReserva.getRecurso().getNombre_recurso());
 	        if (!recurso.isPresent()) {
