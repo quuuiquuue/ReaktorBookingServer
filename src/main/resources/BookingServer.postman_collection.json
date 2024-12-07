@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "88cd9a53-c8c4-4194-bfeb-5c1381d7a03c",
+		"name": "BookingServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30209860"
+	},
+	"item": [
+		{
+			"name": "Ver Tramos_horarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/bookings/tramo_horario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"bookings",
+						"tramo_horario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver Reservas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/bookings/reserva",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"bookings",
+						"reserva"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Reserva",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"correo_profesor\": \"profesor@profesor.es\",\r\n  \"recurso\": {\r\n    \"nombre_recurso\": \"1.11\",\r\n    \"componentes_informaticos\" : \"Tablets\"\r\n  },\r\n  \"diaSemana\": \r\n  {\r\n    \"dia\" : \"Viernes\"\r\n  },\r\n  \"tramoHorario\" : \r\n  {\r\n    \"tramoHorarioId\":\r\n    {\r\n        \"horaInicio\": \"8:00\",\r\n        \"horaFin\": \"9:00\"\r\n    }\r\n  },\r\n  \"profesor\":\r\n  {\r\n    \"dni\": \"12345678A\"\r\n  },\r\n  \"numero_alumnos\": 25\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/bookings/reserva",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"bookings",
+						"reserva"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ver Recursos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/bookings/recursos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"bookings",
+						"recursos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
