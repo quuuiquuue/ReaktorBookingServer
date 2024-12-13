@@ -85,7 +85,7 @@ Si deseas contribuir a este proyecto:
    ```
 5. Abre un Pull Request.
 
-## Autor
+## Autores
 
 Este proyecto fue desarrollado por **[Miguel Rios, Enrique Contreras, Enrique Perez]** bajo la supervision de nuestro profesor **[Paco Benitez]**. 
 
